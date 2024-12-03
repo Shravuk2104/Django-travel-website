@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'main' %}
+<!-- About Start -->
+<div class="container">
+<section class="about" id="about">
+    <div class="container">
+
+      <div class="main-txt">
+        <h1><b><u>About Us</u></b></h1>
+      </div>
+
+      <div class="row" style="margin-top: 50px;">
+
+        <div class="col-md-6 py-3 py-md-0">
+          <div class="card">
+            <img src="{% static 'images/about.png' %}" alt="">
+          </div>
+        </div>
+
+        <div class="col-md-6 py-3 py-md-0">
+          <h2><i>How Travel Agency Works</i></h2>
+          <p>A travel agency sells a variety of tourism products. Airline ticketing and reservation is still a major source of revenue. Travel agencies perform a function of airline ticketing and reservation on behalf of various airlines.A travel agency's main function is to act as an agent, selling travel products and services on behalf of a supplier.</p>
+          <p><p>A travel agency is a private retailer or public service that provides travel and tourism-related services to the general public on behalf of accommodation or travel suppliers to offer different kinds of travelling packages for each destination. Travel agencies can provide outdoor recreation, arranging logistics for luggage and medical items delivery for travellers upon request, public transport timetables, car rentals, and bureau de change services. Travel agencies can also serve as general sales agents for airlines that do not have offices in a specific region. A travel agency's main function is to act as an agent, selling travel products and services on behalf of a supplier. They are also called Travel Advisors. They do not keep inventory in-hand unless they have pre-booked hotel rooms or cabins on a cruise ship for a group travel event such as a wedding, honeymoon, or other group event.</p>
+          
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+  <!-- About End -->
+{% endblock 'main' %}

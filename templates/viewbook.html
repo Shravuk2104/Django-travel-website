@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'main' %}
+<div class="container">
+    <!--main section--> 
+    <div class="row mt-5">
+        <!-- customer and package details -->
+        <div class="col-md-9">
+            <h5 class="bg-danger text-white p-2">Customer Details</h5>
+            {% for x in data %}
+            {% if forloop.counter == 1 %}
+            <p><b>Name:</b>&nbsp;&nbsp;&nbsp;Xyz</p>
+            <p><b>Email:</b>&nbsp;&nbsp;&nbsp;{{user_email}}</p>
+            {% endif %}
+            {% endfor %}
+
+            <div class="row mt-5">
+                <h5 class="bg-danger text-white p-2">Package Details</h5>
+                {% if data %}
+                {% for x in data %}
+                <div class="col-md-9">
+                    <div class="col-md-4 mb-4">
+                        <img src="{{x.pid.pimage.url}}" width="100%">
+                    </div>
+                    <p><b>Package Name:</b>&nbsp;&nbsp;&nbsp;{{x.pid.name}}</p>
+                    <p><b>Price:</b>&nbsp;&nbsp;&nbsp;{{x.pid.price}}</p>
+                    <p><b>Category:</b>&nbsp;&nbsp;&nbsp;{{x.pid.cat}}</p>
+                    <p><b>Package Description:</b>&nbsp;&nbsp;&nbsp; {{x.pid.pdetails}}</p>
+                    <p><b>Qty:</b>
+                        <a href="/updateqty/0/{{x.id}}"><button class="btn btn-danger">-</button></a>
+                        <input type="number" value="{{x.qty}}">
+                        <a href="/updateqty/1/{{x.id}}"><button class="btn btn-success">+</button></a>
+                    </p>
+                    <a href="/remove/{{x.id}}"><button class="btn btn-danger">Remove</button></a>
+                </div>
+                {% endfor %}
+                {% else %}
+                <!-- Display message when cart is empty -->
+                <div class="col-12 text-center mt-5">
+                    <h4>Your cart is empty.</h4>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+<!-- Move the amount details to the remaining 25% space -->
+<div class="col-md-3">
+    <h5 class="bg-danger text-white p-2">Total Amount</h5>
+    {% if items == 0 %}
+        <div class="alert alert-warning" role="alert">
+            <strong>Error:</strong> Please add packages to your cart before proceeding to checkout.
+        </div>
+    {% else %}
+        <p><b>Total Packages:</b> {{items}}</p>
+        <hr>
+        <p><b>Total Amount:</b> Rs.{{total}}</p>
+        <a href="/confirmbooking"><button class="btn btn-danger">Confirm Booking</button></a>
+    {% endif %}
+</div>
+</div>
+</div>
+{% endblock 'main' %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'main' %}
+<div class="row mt-5 mx-auto">
+    {% for x in packages %}
+    <div class="col-md-6 mt5">
+        <img src="{{x.pimage.url}}" width="300px" height="400px">
+    </div>
+    <div class="col-md-6">
+        <p><b>Package Name:</b>&nbsp;&nbsp;&nbsp;{{x.name}}</p>
+        <p><b>Price:</b>&nbsp;&nbsp;&nbsp;Rs. {{x.price}}</p>
+        <p><b>Category:</b>&nbsp;&nbsp;&nbsp;{{x.cat}}</p>
+        <p><b>Product Description:</b>&nbsp;&nbsp;&nbsp; {{x.pdetails}} </p>
+        <p><b>From Date:</b>&nbsp;&nbsp;&nbsp; {{x.from_date}} </p>
+        <p><b>To Date:</b>&nbsp;&nbsp;&nbsp; {{x.to_date}} </p>
+        <br>
+        <a href="/addtobook/{{x.id}}" class="btn btn-danger">Add to Bookings</a>
+        <a href="/viewbook" class="btn btn-danger">View Bookings</a>
+        <a href="/index" class="btn btn-danger">See More</a>
+        {% if success %}
+            <div class="alert alert-success mt-3">
+                {{success}}
+            </div>
+            {% endif %}
+    {% endfor %}
+    {% if errmsg %}
+                <div class="alert alert-danger">
+                    {{errmsg}}
+                </div>
+                {% endif %}
+    </div>
+</div>
+{% endblock 'main' %}
+

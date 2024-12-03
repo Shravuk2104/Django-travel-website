@@ -1,0 +1,67 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'main' %}
+<!-- main Section Book Start -->
+<section class="book" id="book">
+    <div class="container">
+      <div class="main-text">
+        <h1><b>Book</b></h1>
+      </div>
+      <div class="row">
+
+        <div class="col-md-6 py-3 py-md-0">
+          {% for x in  package %}
+          {% if forloop.counter == 1 %}
+          <div class="card">
+            <img src="{{x.pimage.url}}" width="100%" height="">
+
+          </div>
+          
+        </div>
+
+        <!--form action="/addtobook/{{p.id}}" method="POST">
+          {% csrf_token %}
+            <input type="text" class="form-control" rows="5" name="uname" placeholder="Enter Your Name "/><br>
+            <input type="bigint" class="form-control" rows="5" name="mob" placeholder="Enter your Contact Number"/><br>
+            <input type="date" class="form-control" name= "frdate" placeholder="From Date" required><br>
+            <input type="date" class="form-control" name="todate" placeholder="To Date" required><br>
+            <button type="submit" class="btn btn-danger">Book Now</button>
+            <a href="/booknow/{{x.pid}}" class="btn btn-danger"> Book Now </a>
+            <a href="/viewbook" class="btn btn-danger"> View Bookings</a>
+            
+
+          </form-->
+          <form action="/addtobook/{{pid}}" method="POST">
+            {% csrf_token %}
+            <input type="text" class="form-control" name="uname" placeholder="Enter Your Name" required/><br>
+            <input type="text" class="form-control" name="mob" placeholder="Enter your Contact Number" required/><br>
+            <input type="date" class="form-control" name="frdate" placeholder="From Date" required><br>
+            <input type="date" class="form-control" name="todate" placeholder="To Date" required><br>
+            <a href="/booknow/{{pid}}" class="btn btn-danger"> Book Now </a>
+        
+            
+            <a href="/viewbook" class="btn btn-danger">View Bookings</a>
+            {% endif %}
+            {% endfor %}
+        </form>
+          {% if success %}
+                <div class="alert alert-success mt-5">
+                    {{success}}
+                </div>
+        {% endif %}
+        
+        {% if errmsg %}
+                <div class="alert alert-danger mt-5">
+                    {{errmsg}}
+                </div>
+        {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
+  <!-- Section Book End -->
+{% endblock 'main' %}

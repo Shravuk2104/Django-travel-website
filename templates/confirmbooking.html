@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'main' %}
+<!--main section--> 
+<div class="row mt-5">
+    <!--customer and package details-->
+    <div class="col-md-9">
+        <h5 class="bg-danger text-white p-2">Customer Details</h5>
+        {% for x in data %}
+        {% if forloop.counter == 1 %}
+        <p><b>Name:</b>&nbsp;&nbsp;&nbsp;Xyz</p>
+        <!--p><b>Mobile Num:</b>&nbsp;&nbsp;&nbsp;88888888</p-->
+        <p><b>Email:</b>&nbsp;&nbsp;&nbsp;xyz@gmail.com</p>
+        {% endif %}
+        {% endfor %}
+
+        <div class="row">
+            {% for x in data %}
+            <div class="col-md-4 mb-4">
+                <img src="{{x.pid.pimage.url}}" width="100%">
+            </div>
+            <div class="col-md-8">
+                <p><b>Package Name:</b>&nbsp;&nbsp;&nbsp;{{x.pid.name}}</p>
+                <p><b>Price:</b>&nbsp;&nbsp;&nbsp;Rs. {{x.pid.price}}</p>
+                <p><b>Category:</b>&nbsp;&nbsp;&nbsp;{{x.pid.cat}}</p>
+                <p><b>Package Description:</b>&nbsp;&nbsp;&nbsp; {{x.pid.pdetails}}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!--amount details-->
+    <div class="col-md-3">
+        <h5 class="bg-danger text-white p-2">Total Amount</h5>
+        <p><b>Total({{items}}):</b>Rs. {{total}}</p>
+        <hr>
+        <p><b>Total Amount:</b>Rs. {{total}}</p>
+        <a href="/makepayment"><button class="btn btn-danger">Make Payment</button></a>
+    </div>
+</div>
+{% endblock 'main' %}
